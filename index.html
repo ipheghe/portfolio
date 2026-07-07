@@ -1,524 +1,1223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ovie — Software Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#F5F4EF;
-    --paper-raised:#FBFAF7;
-    --ink:#171B1F;
-    --ink-soft:#4B5157;
-    --line:#DAD6CB;
-    --blue:#2451B3;
-    --blue-dim:#EAEFFA;
-    --green:#1C7C4E;
-    --green-dim:#E7F3EC;
-    --amber:#B3611F;
-    --amber-dim:#F7ECDF;
-    --radius:3px;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter', sans-serif;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;}
-  .mono{font-family:'JetBrains Mono', monospace;}
-  .display{font-family:'Space Grotesk', sans-serif;}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ovie Ipheghe — Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f5f4ef;
+        --paper-raised: #fbfaf7;
+        --ink: #171b1f;
+        --ink-soft: #4b5157;
+        --line: #dad6cb;
+        --blue: #2451b3;
+        --blue-dim: #eaeffa;
+        --green: #1c7c4e;
+        --green-dim: #e7f3ec;
+        --amber: #b3611f;
+        --amber-dim: #f7ecdf;
+        --radius: 3px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+      }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .display {
+        font-family: "Space Grotesk", sans-serif;
+      }
 
-  ::selection{background:var(--blue); color:#fff;}
+      ::selection {
+        background: var(--blue);
+        color: #fff;
+      }
 
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--blue);
-    outline-offset:3px;
-  }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 3px;
+      }
 
-  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
 
-  /* ---------- topbar ---------- */
-  .topbar{
-    position:sticky; top:0; z-index:40;
-    background:rgba(245,244,239,0.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-  }
-  .topbar .wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    height:56px;
-  }
-  .brand{font-family:'JetBrains Mono', monospace; font-size:14px; font-weight:600; letter-spacing:-0.02em;}
-  .brand span{color:var(--blue);}
-  nav{display:flex; gap:22px; font-family:'JetBrains Mono', monospace; font-size:12.5px;}
-  nav a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
-  nav a:hover{color:var(--ink);}
-  @media(max-width:640px){ nav{display:none;} }
+      /* ---------- topbar ---------- */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(245, 244, 239, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      .topbar .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+      }
+      .brand {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .brand span {
+        color: var(--blue);
+      }
+      nav {
+        display: flex;
+        gap: 22px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+      }
+      nav a {
+        text-decoration: none;
+        color: var(--ink-soft);
+        transition: color 0.15s;
+      }
+      nav a:hover {
+        color: var(--ink);
+      }
+      @media (max-width: 640px) {
+        nav {
+          display: none;
+        }
+      }
 
-  /* ---------- hero ---------- */
-  .hero{padding:76px 0 56px; border-bottom:1px solid var(--line);}
-  .eyebrow{
-    font-family:'JetBrains Mono', monospace; font-size:12.5px; font-weight:600;
-    color:var(--blue); letter-spacing:0.06em; text-transform:uppercase;
-    display:flex; align-items:center; gap:8px; margin-bottom:18px;
-  }
-  .eyebrow::before{content:''; width:7px; height:7px; background:var(--green); border-radius:50%; display:inline-block; box-shadow:0 0 0 3px var(--green-dim);}
-  h1.display{
-    font-size:clamp(38px, 6vw, 60px);
-    font-weight:700; letter-spacing:-0.02em; line-height:1.02;
-    margin-bottom:18px;
-  }
-  .hero .lede{font-size:18px; color:var(--ink-soft); max-width:560px; margin-bottom:26px;}
-  .chip-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px;}
-  .chip{
-    font-family:'JetBrains Mono', monospace; font-size:12px; font-weight:500;
-    padding:5px 10px; border:1px solid var(--line); border-radius:var(--radius);
-    background:var(--paper-raised); color:var(--ink-soft);
-  }
-  .chip.pass{border-color:var(--green); color:var(--green); background:var(--green-dim);}
-  .cta-row{display:flex; flex-wrap:wrap; gap:12px;}
-  .btn{
-    font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:600;
-    padding:11px 18px; border-radius:var(--radius); text-decoration:none;
-    display:inline-flex; align-items:center; gap:8px; transition:transform .12s, background .12s;
-  }
-  .btn-primary{background:var(--ink); color:var(--paper);}
-  .btn-primary:hover{background:var(--blue);}
-  .btn-outline{border:1px solid var(--line); color:var(--ink);}
-  .btn-outline:hover{border-color:var(--ink);}
+      /* ---------- hero ---------- */
+      .hero {
+        padding: 76px 0 56px;
+        border-bottom: 1px solid var(--line);
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: var(--green);
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 0 3px var(--green-dim);
+      }
+      h1.display {
+        font-size: clamp(38px, 6vw, 60px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.02;
+        margin-bottom: 18px;
+      }
+      .hero .lede {
+        font-size: 18px;
+        color: var(--ink-soft);
+        max-width: 560px;
+        margin-bottom: 26px;
+      }
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 32px;
+      }
+      .chip {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 5px 10px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper-raised);
+        color: var(--ink-soft);
+      }
+      .chip.pass {
+        border-color: var(--green);
+        color: var(--green);
+        background: var(--green-dim);
+      }
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .btn {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 11px 18px;
+        border-radius: var(--radius);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.12s, background 0.12s;
+      }
+      .btn-primary {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .btn-primary:hover {
+        background: var(--blue);
+      }
+      .btn-outline {
+        border: 1px solid var(--line);
+        color: var(--ink);
+      }
+      .btn-outline:hover {
+        border-color: var(--ink);
+      }
 
-  /* ---------- section header (component tag style) ---------- */
-  .section{padding:56px 0; border-bottom:1px solid var(--line);}
-  .sec-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:30px; gap:16px; flex-wrap:wrap;}
-  .sec-tag{
-    font-family:'JetBrains Mono', monospace; font-size:20px; font-weight:600;
-    color:var(--ink);
-  }
-  .sec-tag .bracket{color:var(--blue);}
-  .sec-audit{
-    font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:600;
-    color:var(--green); background:var(--green-dim); border:1px solid var(--green);
-    padding:3px 8px; border-radius:var(--radius); letter-spacing:0.03em;
-  }
-  .sec-desc{color:var(--ink-soft); max-width:560px; font-size:15px; margin-top:-16px; margin-bottom:8px;}
+      /* ---------- section header (component tag style) ---------- */
+      .section {
+        padding: 56px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .sec-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .sec-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .sec-tag .bracket {
+        color: var(--blue);
+      }
+      .sec-audit {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--green);
+        background: var(--green-dim);
+        border: 1px solid var(--green);
+        padding: 3px 8px;
+        border-radius: var(--radius);
+        letter-spacing: 0.03em;
+      }
+      .sec-desc {
+        color: var(--ink-soft);
+        max-width: 560px;
+        font-size: 15px;
+        margin-top: -16px;
+        margin-bottom: 8px;
+      }
 
-  /* ---------- now bar ---------- */
-  .now-bar{
-    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
-    background:var(--paper-raised); border:1px solid var(--line); border-radius:var(--radius);
-    padding:14px 18px; margin-top:8px;
-  }
-  .now-bar .dot{width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 4px var(--green-dim); flex-shrink:0;}
-  .now-bar .label{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--green); font-weight:700; letter-spacing:0.06em;}
-  .now-bar .text{font-size:14px; color:var(--ink-soft);}
-  .now-bar .text b{color:var(--ink); font-weight:600;}
+      /* ---------- now bar ---------- */
+      .now-bar {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        background: var(--paper-raised);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 14px 18px;
+        margin-top: 8px;
+      }
+      .now-bar .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 0 4px var(--green-dim);
+        flex-shrink: 0;
+      }
+      .now-bar .label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--green);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+      .now-bar .text {
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+      .now-bar .text b {
+        color: var(--ink);
+        font-weight: 600;
+      }
 
-  /* ---------- changelog ---------- */
-  .changelog{position:relative; padding-left:2px;}
-  .entry{
-    display:grid; grid-template-columns:110px 1fr; gap:22px;
-    padding:22px 0; border-top:1px solid var(--line);
-    opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;
-  }
-  .entry.show{opacity:1; transform:translateY(0);}
-  .entry:first-child{border-top:none;}
-  .ver{font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--blue); font-weight:600; padding-top:2px;}
-  .entry-role{font-size:16px; font-weight:600; margin-bottom:2px;}
-  .entry-org{font-size:13px; color:var(--ink-soft); margin-bottom:10px;}
-  .entry-org a{color:var(--blue); text-decoration:none; border-bottom:1px dotted var(--blue);}
-  .entry-desc{font-size:14.5px; color:var(--ink-soft); max-width:600px;}
-  .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
-  .tag{
-    font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--ink-soft);
-    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:3px 7px;
-  }
-  .link-row{margin-top:10px;}
-  .app-link{
-    font-family:'JetBrains Mono', monospace; font-size:11.5px; font-weight:600;
-    color:var(--blue); text-decoration:none; border-bottom:1px solid transparent;
-    display:inline-flex; align-items:center; gap:5px;
-  }
-  .app-link:hover{border-bottom-color:var(--blue);}
-  @media(max-width:560px){
-    .entry{grid-template-columns:1fr;}
-    .ver{padding-top:0;}
-  }
-  .earlier-note{
-    margin-top:10px; padding-top:16px; border-top:1px solid var(--line);
-    font-size:13px; color:var(--ink-soft); font-family:'JetBrains Mono', monospace;
-  }
+      /* ---------- changelog ---------- */
+      .changelog {
+        position: relative;
+        padding-left: 2px;
+      }
+      .entry {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 22px;
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .entry.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .entry:first-child {
+        border-top: none;
+      }
+      .ver {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: var(--blue);
+        font-weight: 600;
+        padding-top: 2px;
+      }
+      .entry-role {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .entry-org {
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-bottom: 10px;
+      }
+      .entry-org a {
+        color: var(--blue);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--blue);
+      }
+      .entry-desc {
+        font-size: 14.5px;
+        color: var(--ink-soft);
+        max-width: 600px;
+      }
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-soft);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 3px 7px;
+      }
+      .link-row {
+        margin-top: 10px;
+      }
+      .app-link {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--blue);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .app-link:hover {
+        border-bottom-color: var(--blue);
+      }
+      @media (max-width: 560px) {
+        .entry {
+          grid-template-columns: 1fr;
+        }
+        .ver {
+          padding-top: 0;
+        }
+      }
+      .earlier-note {
+        margin-top: 10px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+        color: var(--ink-soft);
+        font-family: "JetBrains Mono", monospace;
+      }
 
-  /* ---------- release cards (achievements) ---------- */
-  .release-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-  @media(max-width:640px){ .release-grid{grid-template-columns:1fr;} }
-  .release-card{
-    border:1px solid var(--line); border-radius:var(--radius); padding:18px;
-    background:var(--paper-raised); transition:border-color .15s;
-  }
-  .release-card:hover{border-color:var(--blue);}
-  .release-year{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--amber); background:var(--amber-dim); border:1px solid var(--amber); display:inline-block; padding:2px 7px; border-radius:var(--radius); margin-bottom:10px; font-weight:600;}
-  .release-title{font-weight:600; font-size:15px; margin-bottom:6px;}
-  .release-body{font-size:13.5px; color:var(--ink-soft);}
-  .release-card .app-link{margin-top:10px;}
+      /* ---------- release cards (achievements) ---------- */
+      .release-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      @media (max-width: 640px) {
+        .release-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .release-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 18px;
+        background: var(--paper-raised);
+        transition: border-color 0.15s;
+      }
+      .release-card:hover {
+        border-color: var(--blue);
+      }
+      .release-year {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--amber);
+        background: var(--amber-dim);
+        border: 1px solid var(--amber);
+        display: inline-block;
+        padding: 2px 7px;
+        border-radius: var(--radius);
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      .release-title {
+        font-weight: 600;
+        font-size: 15px;
+        margin-bottom: 6px;
+      }
+      .release-body {
+        font-size: 13.5px;
+        color: var(--ink-soft);
+      }
+      .release-card .app-link {
+        margin-top: 10px;
+      }
 
-  /* ---------- skills / props table ---------- */
-  .props{width:100%; border-collapse:collapse; font-size:14px;}
-  .props tr{border-top:1px solid var(--line);}
-  .props tr:first-child{border-top:none;}
-  .props td{padding:14px 0; vertical-align:top;}
-  .props td.key{
-    font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--blue);
-    width:170px; font-weight:600; padding-right:16px;
-  }
-  .val-chips{display:flex; flex-wrap:wrap; gap:6px;}
-  .val-chip{font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--ink-soft); background:var(--paper); border:1px solid var(--line); padding:3px 8px; border-radius:var(--radius);}
+      /* ---------- skills / props table ---------- */
+      .props {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      .props tr {
+        border-top: 1px solid var(--line);
+      }
+      .props tr:first-child {
+        border-top: none;
+      }
+      .props td {
+        padding: 14px 0;
+        vertical-align: top;
+      }
+      .props td.key {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        color: var(--blue);
+        width: 170px;
+        font-weight: 600;
+        padding-right: 16px;
+      }
+      .val-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .val-chip {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--ink-soft);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 3px 8px;
+        border-radius: var(--radius);
+      }
 
-  /* ---------- education ---------- */
-  .edu-list{display:flex; flex-direction:column;}
-  .edu-item{
-    display:flex; justify-content:space-between; gap:16px;
-    padding:13px 0; border-top:1px solid var(--line); font-size:14px;
-  }
-  .edu-item:first-child{border-top:none;}
-  .edu-name{font-weight:500;}
-  .edu-org{color:var(--ink-soft); font-size:13px;}
-  .edu-year{font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--ink-soft); white-space:nowrap; padding-top:1px;}
+      /* ---------- education ---------- */
+      .edu-list {
+        display: flex;
+        flex-direction: column;
+      }
+      .edu-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 13px 0;
+        border-top: 1px solid var(--line);
+        font-size: 14px;
+      }
+      .edu-item:first-child {
+        border-top: none;
+      }
+      .edu-name {
+        font-weight: 500;
+      }
+      .edu-org {
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+      .edu-year {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        white-space: nowrap;
+        padding-top: 1px;
+      }
 
-  /* ---------- footer ---------- */
-  footer{padding:56px 0 70px;}
-  .foot-tag{font-family:'JetBrains Mono', monospace; font-size:20px; font-weight:600; margin-bottom:14px;}
-  footer .lede{color:var(--ink-soft); max-width:480px; margin-bottom:28px; font-size:15px;}
-  .contact-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:40px;}
-  @media(max-width:640px){ .contact-grid{grid-template-columns:1fr;} }
-  .contact-card{
-    border:1px solid var(--line); border-radius:var(--radius); padding:16px;
-    background:var(--paper-raised); text-decoration:none; color:var(--ink);
-    transition:border-color .15s, transform .15s;
-  }
-  .contact-card:hover{border-color:var(--blue); transform:translateY(-2px);}
-  .contact-label{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;}
-  .contact-value{font-size:14px; font-weight:500; word-break:break-word;}
-  .fine{font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:20px;}
-</style>
-</head>
-<body>
-
-<div class="topbar">
-  <div class="wrap">
-    <div class="brand">ovie<span>.dev</span></div>
-    <nav>
-      <a href="#experience">experience</a>
-      <a href="#releases">highlights</a>
-      <a href="#stack">stack</a>
-      <a href="#education">education</a>
-      <a href="#contact">contact</a>
-    </nav>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">available for new roles</div>
-    <h1 class="display">Ovie<br>Software Engineer — Web &amp; Mobile</h1>
-    <p class="lede">I build production web applications and platform tooling — currently on TESCO's Web Platform team supporting micro-frontend teams, after building the AA+ accessible components behind TESCO's Grocery app. Previously shipped for Coursera, Brandcast, and Trace Genomics.</p>
-    <div class="chip-row">
-      <span class="chip pass">✓ AA+ accessibility</span>
-      <span class="chip">8+ yrs professional</span>
-      <span class="chip">React · Angular · Node</span>
-      <span class="chip">UK-based</span>
+      /* ---------- footer ---------- */
+      footer {
+        padding: 56px 0 70px;
+      }
+      .foot-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      footer .lede {
+        color: var(--ink-soft);
+        max-width: 480px;
+        margin-bottom: 28px;
+        font-size: 15px;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-bottom: 40px;
+      }
+      @media (max-width: 640px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .contact-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 16px;
+        background: var(--paper-raised);
+        text-decoration: none;
+        color: var(--ink);
+        transition: border-color 0.15s, transform 0.15s;
+      }
+      .contact-card:hover {
+        border-color: var(--blue);
+        transform: translateY(-2px);
+      }
+      .contact-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 6px;
+      }
+      .contact-value {
+        font-size: 14px;
+        font-weight: 500;
+        word-break: break-word;
+      }
+      .fine {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        color: var(--ink-soft);
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="wrap">
+        <div class="brand">ovie<span>.dev</span></div>
+        <nav>
+          <a href="#experience">experience</a>
+          <a href="#releases">highlights</a>
+          <a href="#stack">stack</a>
+          <a href="#education">education</a>
+          <a href="#contact">contact</a>
+        </nav>
+      </div>
     </div>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="mailto:iphegheovie@gmail.com">Email me →</a>
-      <a class="btn btn-outline" href="#experience">View experience</a>
-    </div>
-  </div>
-</header>
 
-<section class="section" id="experience">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag"><span class="bracket">&lt;</span>Experience<span class="bracket"> /&gt;</span></div>
-      <span class="sec-audit">● shipped in prod</span>
-    </div>
-    <p class="sec-desc">A release history of teams and products I've shipped for, newest first.</p>
-
-    <div class="now-bar">
-      <span class="dot"></span>
-      <span class="label">NOW SHIPPING</span>
-      <span class="text"><b>TESCO Technology (UK)</b> — Web Platform team, building tooling for micro-frontend teams</span>
-    </div>
-
-    <div class="changelog">
-      <div class="entry">
-        <div class="ver">v2024.02</div>
-        <div>
-          <div class="entry-role">Software Engineer, Web Platform</div>
-          <div class="entry-org">TESCO Technology — <a href="https://www.tesco.com/" target="_blank" rel="noopener">tesco.com</a> · 2024 – present</div>
-          <div class="entry-desc">Moved to the Web Platform team, providing tooling and infrastructure that different micro-frontend (MFE) teams build on, and working directly with a number of MFE applications across the business.</div>
-          <div class="tag-row"><span class="tag">Platform Engineering</span><span class="tag">Micro-frontends</span><span class="tag">Tooling</span></div>
+    <header class="hero">
+      <div class="wrap">
+        <div class="eyebrow">available for new roles</div>
+        <h1 class="display">
+          Ovie Ipheghe<br />Software Engineer — Web &amp; Mobile
+        </h1>
+        <p class="lede">
+          I build production web applications and platform tooling — currently
+          on TESCO's Web Platform team supporting micro-frontend teams, after
+          building the AA+ accessible components behind TESCO's Grocery app.
+          Previously shipped for Coursera, Brandcast, and Trace Genomics.
+        </p>
+        <div class="chip-row">
+          <span class="chip pass">✓ AA+ accessibility</span>
+          <span class="chip">8+ yrs professional</span>
+          <span class="chip">React · Angular · Node</span>
+          <span class="chip">UK-based</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:iphegheovie@gmail.com"
+            >Email me →</a
+          >
+          <a class="btn btn-outline" href="#experience">View experience</a>
         </div>
       </div>
+    </header>
 
-      <div class="entry">
-        <div class="ver">v2022.09</div>
-        <div>
-          <div class="entry-role">Software Engineer, Component Library</div>
-          <div class="entry-org">TESCO Technology — <a href="https://www.tesco.com/" target="_blank" rel="noopener">tesco.com</a> · Sept 2022 – 2024</div>
-          <div class="entry-desc">Part of the component library team building AA+ accessible frontend components, used across Tesco's internal tools and — most visibly — the customer-facing Grocery application.</div>
-          <div class="tag-row"><span class="tag">Accessibility</span><span class="tag">Component Library</span><span class="tag">Frontend</span></div>
-          <div class="link-row"><a href="https://www.tesco.com/" target="_blank" rel="noopener" class="app-link">↗ tesco.com</a></div>
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-tag">
+            <span class="bracket">&lt;</span>Experience<span class="bracket">
+              /&gt;</span
+            >
+          </div>
+          <span class="sec-audit">● shipped in prod</span>
+        </div>
+        <p class="sec-desc">
+          A release history of teams and products I've shipped for, newest
+          first.
+        </p>
+
+        <div class="now-bar">
+          <span class="dot"></span>
+          <span class="label">NOW SHIPPING</span>
+          <span class="text"
+            ><b>TESCO Technology (UK)</b> — Web Platform team, building tooling
+            for micro-frontend teams</span
+          >
+        </div>
+
+        <div class="changelog">
+          <div class="entry">
+            <div class="ver">v2024.02</div>
+            <div>
+              <div class="entry-role">Software Engineer, Web Platform</div>
+              <div class="entry-org">
+                TESCO Technology —
+                <a href="https://www.tesco.com/" target="_blank" rel="noopener"
+                  >tesco.com</a
+                >
+                · 2024 – present
+              </div>
+              <div class="entry-desc">
+                Moved to the Web Platform team, providing tooling and
+                infrastructure that different micro-frontend (MFE) teams build
+                on, and working directly with a number of MFE applications
+                across the business.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Platform Engineering</span
+                ><span class="tag">Micro-frontends</span
+                ><span class="tag">Tooling</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="ver">v2022.09</div>
+            <div>
+              <div class="entry-role">Software Engineer, Component Library</div>
+              <div class="entry-org">
+                TESCO Technology —
+                <a href="https://www.tesco.com/" target="_blank" rel="noopener"
+                  >tesco.com</a
+                >
+                · Sept 2022 – 2024
+              </div>
+              <div class="entry-desc">
+                Part of the component library team building AA+ accessible
+                frontend components, used across Tesco's internal tools and —
+                most visibly — the customer-facing Grocery application.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Accessibility</span
+                ><span class="tag">Component Library</span
+                ><span class="tag">Frontend</span>
+              </div>
+              <div class="link-row">
+                <a
+                  href="https://www.tesco.com/"
+                  target="_blank"
+                  rel="noopener"
+                  class="app-link"
+                  >↗ tesco.com</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="ver">v2021.05</div>
+            <div>
+              <div class="entry-role">Software Engineer</div>
+              <div class="entry-org">
+                Pangaea, U.S.A · May 2021 – March 2022
+              </div>
+              <div class="entry-desc">
+                Worked on the Meridian Grooming application for Pangaea, the
+                holding company behind grooming and skincare brands Meridian and
+                Lumin.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Full-stack</span
+                ><span class="tag">E-commerce</span>
+              </div>
+              <div class="link-row">
+                <a
+                  href="https://www.meridiangrooming.com/"
+                  target="_blank"
+                  rel="noopener"
+                  class="app-link"
+                  >↗ meridiangrooming.com</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="ver">v2021.04</div>
+            <div>
+              <div class="entry-role">
+                Software Engineer
+                <span style="color: var(--ink-soft); font-weight: 400"
+                  >(Andela contract)</span
+                >
+              </div>
+              <div class="entry-org">
+                OPIE Software, U.S.A · Apr 2021 – Dec 2022
+              </div>
+              <div class="entry-desc">
+                Developed and tested new software programs, working closely with
+                management to translate business challenges into technical
+                decisions.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Full-stack</span
+                ><span class="tag">Client engagement</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="ver">v2019.09</div>
+            <div>
+              <div class="entry-role">
+                Software Engineer
+                <span style="color: var(--ink-soft); font-weight: 400"
+                  >(Andela contract)</span
+                >
+              </div>
+              <div class="entry-org">
+                Trace Genomics, U.S.A · Sept 2019 – June 2020
+              </div>
+              <div class="entry-desc">
+                Part of the team that migrated a legacy application to a new,
+                improved version — root cause analysis, code review, unit
+                testing, and documentation.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Legacy migration</span
+                ><span class="tag">Code review</span
+                ><span class="tag">Testing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="ver">v2019.06</div>
+            <div>
+              <div class="entry-role">
+                Software Engineer
+                <span style="color: var(--ink-soft); font-weight: 400"
+                  >(Andela contract)</span
+                >
+              </div>
+              <div class="entry-org">
+                Coursera, U.S.A · June 2019 – July 2019
+              </div>
+              <div class="entry-desc">
+                Shipped two products within their estimated timeframes: Coursera
+                Careers and the Coursera Expert Network app.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Product launch</span
+                ><span class="tag">React</span>
+              </div>
+              <div class="link-row">
+                <a
+                  href="https://experts.coursera.org/"
+                  target="_blank"
+                  rel="noopener"
+                  class="app-link"
+                  >↗ experts.coursera.org</a
+                >
+                &nbsp;&nbsp;
+                <a
+                  href="https://about.coursera.org/careers/"
+                  target="_blank"
+                  rel="noopener"
+                  class="app-link"
+                  >↗ coursera.org/careers</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="ver">v2018.08</div>
+            <div>
+              <div class="entry-role">
+                Software Engineer
+                <span style="color: var(--ink-soft); font-weight: 400"
+                  >(Andela contract)</span
+                >
+              </div>
+              <div class="entry-org">
+                Brandcast, U.S.A · Aug 2018 – Feb 2019
+              </div>
+              <div class="entry-desc">
+                Designed and built a Content Site Generator solution, delivered
+                within the estimated timeframe.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Solution design</span>
+              </div>
+              <div class="link-row">
+                <a
+                  href="https://brandcast.com/"
+                  target="_blank"
+                  rel="noopener"
+                  class="app-link"
+                  >↗ brandcast.com</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="ver">v2017.10</div>
+            <div>
+              <div class="entry-role">Software Engineer</div>
+              <div class="entry-org">Andela Inc · Oct 2017 – Dec 2022</div>
+              <div class="entry-desc">
+                Built web applications for external partner engagements
+                (Brandcast, Coursera, Trace Genomics) and internal teams. Led on
+                select projects, mentored junior engineers, and facilitated
+                Bootcamp cohorts.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Team lead</span
+                ><span class="tag">Mentorship</span
+                ><span class="tag">Bootcamp facilitator</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="ver">v2015.11</div>
+            <div>
+              <div class="entry-role">Software Developer</div>
+              <div class="entry-org">
+                Javaplus Innovations, Nigeria · Nov 2015 – Sept 2017
+              </div>
+              <div class="entry-desc">
+                Relational database design, J2EE enterprise applications,
+                Android development, and technical training for corporate
+                clients and system integrators.
+              </div>
+              <div class="tag-row">
+                <span class="tag">J2EE</span><span class="tag">Android</span
+                ><span class="tag">Training</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="earlier-note">
+          ↳ earlier: Executive Assistant, National Assembly Nigeria (N.Y.S.C) —
+          2015 · Quality Control, Johnson Wax Nigeria — 2012
         </div>
       </div>
+    </section>
 
-      <div class="entry">
-        <div class="ver">v2021.05</div>
-        <div>
-          <div class="entry-role">Software Engineer</div>
-          <div class="entry-org">Pangaea, U.S.A · May 2021 – March 2022</div>
-          <div class="entry-desc">Worked on the Meridian Grooming application for Pangaea, the holding company behind grooming and skincare brands Meridian and Lumin.</div>
-          <div class="tag-row"><span class="tag">Full-stack</span><span class="tag">E-commerce</span></div>
-          <div class="link-row"><a href="https://www.meridiangrooming.com/" target="_blank" rel="noopener" class="app-link">↗ meridiangrooming.com</a></div>
+    <section class="section" id="releases">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-tag">
+            <span class="bracket">&lt;</span>Highlights<span class="bracket">
+              /&gt;</span
+            >
+          </div>
+          <span class="sec-audit">● key achievements</span>
         </div>
-      </div>
-
-      <div class="entry">
-        <div class="ver">v2021.04</div>
-        <div>
-          <div class="entry-role">Software Engineer <span style="color:var(--ink-soft); font-weight:400;">(Andela contract)</span></div>
-          <div class="entry-org">OPIE Software, U.S.A · Apr 2021 – Dec 2022</div>
-          <div class="entry-desc">Developed and tested new software programs, working closely with management to translate business challenges into technical decisions.</div>
-          <div class="tag-row"><span class="tag">Full-stack</span><span class="tag">Client engagement</span></div>
-        </div>
-      </div>
-
-      <div class="entry">
-        <div class="ver">v2019.09</div>
-        <div>
-          <div class="entry-role">Software Engineer <span style="color:var(--ink-soft); font-weight:400;">(Andela contract)</span></div>
-          <div class="entry-org">Trace Genomics, U.S.A · Sept 2019 – June 2020</div>
-          <div class="entry-desc">Part of the team that migrated a legacy application to a new, improved version — root cause analysis, code review, unit testing, and documentation.</div>
-          <div class="tag-row"><span class="tag">Legacy migration</span><span class="tag">Code review</span><span class="tag">Testing</span></div>
-        </div>
-      </div>
-
-      <div class="entry">
-        <div class="ver">v2019.06</div>
-        <div>
-          <div class="entry-role">Software Engineer <span style="color:var(--ink-soft); font-weight:400;">(Andela contract)</span></div>
-          <div class="entry-org">Coursera, U.S.A · June 2019 – July 2019</div>
-          <div class="entry-desc">Shipped two products within their estimated timeframes: Coursera Careers and the Coursera Expert Network app.</div>
-          <div class="tag-row"><span class="tag">Product launch</span><span class="tag">React</span></div>
-          <div class="link-row">
-            <a href="https://experts.coursera.org/" target="_blank" rel="noopener" class="app-link">↗ experts.coursera.org</a>
-            &nbsp;&nbsp;
-            <a href="https://about.coursera.org/careers/" target="_blank" rel="noopener" class="app-link">↗ coursera.org/careers</a>
+        <p class="sec-desc">Products taken from spec to production.</p>
+        <div class="release-grid">
+          <div class="release-card">
+            <span class="release-year">2016</span>
+            <div class="release-title">Stock Manager mobile app</div>
+            <div class="release-body">
+              Portfolio tracking, daily top-10 gainers/losers, and stockbroker
+              locator.
+            </div>
+          </div>
+          <div class="release-card">
+            <span class="release-year">2016</span>
+            <div class="release-title">Android security lockdown solution</div>
+            <div class="release-body">
+              Restricts device access to approved functions, with an admin
+              dashboard for user management.
+            </div>
+          </div>
+          <div class="release-card">
+            <span class="release-year">2017</span>
+            <div class="release-title">Fintech agency banking backend</div>
+            <div class="release-body">
+              Backend systems powering an agency banking function.
+            </div>
+          </div>
+          <div class="release-card">
+            <span class="release-year">2019</span>
+            <div class="release-title">
+              Coursera Careers &amp; Network Expert
+            </div>
+            <div class="release-body">
+              Two products shipped for Coursera within their estimated
+              timeframes.
+            </div>
+            <div>
+              <a
+                href="https://experts.coursera.org/"
+                target="_blank"
+                rel="noopener"
+                class="app-link"
+                >↗ experts.coursera.org</a
+              >
+            </div>
+          </div>
+          <div class="release-card">
+            <span class="release-year">2019</span>
+            <div class="release-title">Brandcast content site generator</div>
+            <div class="release-body">
+              Designed and delivered within the estimated timeframe.
+            </div>
+            <div>
+              <a
+                href="https://brandcast.com/"
+                target="_blank"
+                rel="noopener"
+                class="app-link"
+                >↗ brandcast.com</a
+              >
+            </div>
+          </div>
+          <div class="release-card">
+            <span class="release-year">2021–22</span>
+            <div class="release-title">Meridian Grooming (Pangaea)</div>
+            <div class="release-body">
+              Web application work for Pangaea's Meridian grooming brand.
+            </div>
+            <div>
+              <a
+                href="https://www.meridiangrooming.com/"
+                target="_blank"
+                rel="noopener"
+                class="app-link"
+                >↗ meridiangrooming.com</a
+              >
+            </div>
+          </div>
+          <div class="release-card">
+            <span class="release-year">2020</span>
+            <div class="release-title">Trace Genomics platform migration</div>
+            <div class="release-body">
+              Transitioned a legacy application to a new, improved version.
+            </div>
+          </div>
+          <div class="release-card">
+            <span class="release-year">2022–now</span>
+            <div class="release-title">Tesco accessible component library</div>
+            <div class="release-body">
+              AA+ accessible components in production across Tesco's internal
+              and customer-facing apps.
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="entry">
-        <div class="ver">v2018.08</div>
-        <div>
-          <div class="entry-role">Software Engineer <span style="color:var(--ink-soft); font-weight:400;">(Andela contract)</span></div>
-          <div class="entry-org">Brandcast, U.S.A · Aug 2018 – Feb 2019</div>
-          <div class="entry-desc">Designed and built a Content Site Generator solution, delivered within the estimated timeframe.</div>
-          <div class="tag-row"><span class="tag">Solution design</span></div>
-          <div class="link-row"><a href="https://brandcast.com/" target="_blank" rel="noopener" class="app-link">↗ brandcast.com</a></div>
+    <section class="section" id="stack">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-tag">
+            <span class="bracket">&lt;</span>Stack<span class="bracket">
+              /&gt;</span
+            >
+          </div>
+          <span class="sec-audit">● props</span>
+        </div>
+        <p class="sec-desc">
+          Languages, frameworks, and tools used across the above.
+        </p>
+        <table class="props">
+          <tr>
+            <td class="key">languages</td>
+            <td>
+              <div class="val-chips">
+                <span class="val-chip">Java SE</span
+                ><span class="val-chip">TypeScript</span
+                ><span class="val-chip">JavaScript</span
+                ><span class="val-chip">C#</span
+                ><span class="val-chip">Dart</span
+                ><span class="val-chip">Python</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="key">frontend</td>
+            <td>
+              <div class="val-chips">
+                <span class="val-chip">React</span
+                ><span class="val-chip">Redux</span
+                ><span class="val-chip">Angular</span
+                ><span class="val-chip">Vue</span
+                ><span class="val-chip">Bootstrap</span
+                ><span class="val-chip">jQuery</span
+                ><span class="val-chip">CSS</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="key">backend</td>
+            <td>
+              <div class="val-chips">
+                <span class="val-chip">Node.js</span
+                ><span class="val-chip">JDBC</span
+                ><span class="val-chip">JSP / Servlet</span
+                ><span class="val-chip">EJB</span
+                ><span class="val-chip">RMI</span
+                ><span class="val-chip">Web Services</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="key">mobile</td>
+            <td>
+              <div class="val-chips">
+                <span class="val-chip">Android</span
+                ><span class="val-chip">React Native</span
+                ><span class="val-chip">Flutter</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="key">databases</td>
+            <td>
+              <div class="val-chips">
+                <span class="val-chip">PostgreSQL</span
+                ><span class="val-chip">MySQL</span
+                ><span class="val-chip">MS SQL</span
+                ><span class="val-chip">Oracle</span
+                ><span class="val-chip">MongoDB</span
+                ><span class="val-chip">SQLite</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="key">practice</td>
+            <td>
+              <div class="val-chips">
+                <span class="val-chip">Accessibility (AA/AAA)</span
+                ><span class="val-chip">Micro-frontends</span
+                ><span class="val-chip">Platform Tooling</span
+                ><span class="val-chip">QA &amp; Testing</span
+                ><span class="val-chip">Project management</span
+                ><span class="val-chip">Mentorship</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-tag">
+            <span class="bracket">&lt;</span>Education<span class="bracket">
+              /&gt;</span
+            >
+          </div>
+          <span class="sec-audit">● verified</span>
+        </div>
+        <div class="edu-list">
+          <div class="edu-item">
+            <div>
+              <div class="edu-name">
+                BCS Higher Education Qualifications Certificate
+              </div>
+              <div class="edu-org">
+                British Computer Society — The Chartered Institute for IT
+              </div>
+            </div>
+            <div class="edu-year">2020</div>
+          </div>
+          <div class="edu-item">
+            <div>
+              <div class="edu-name">
+                Certificate of Completion, Python Programming
+              </div>
+              <div class="edu-org">Melodia Coding Academy</div>
+            </div>
+            <div class="edu-year">2018</div>
+          </div>
+          <div class="edu-item">
+            <div>
+              <div class="edu-name">Honours Diploma, Network Engineering</div>
+              <div class="edu-org">
+                NIIT Education and Training Center, Lagos
+              </div>
+            </div>
+            <div class="edu-year">2017</div>
+          </div>
+          <div class="edu-item">
+            <div>
+              <div class="edu-name">
+                Advanced Certificate in IT (Java Technologies)
+              </div>
+              <div class="edu-org">
+                NIIT Education and Training Center, Lagos
+              </div>
+            </div>
+            <div class="edu-year">2016</div>
+          </div>
+          <div class="edu-item">
+            <div>
+              <div class="edu-name">
+                CCNA — Cisco Certified Network Associate
+              </div>
+              <div class="edu-org">Micrometrics, FCT Abuja</div>
+            </div>
+            <div class="edu-year">2015</div>
+          </div>
+          <div class="edu-item">
+            <div>
+              <div class="edu-name">
+                Certificate in IT, Web Component Development
+              </div>
+              <div class="edu-org">Javaplus Technologies, Lagos</div>
+            </div>
+            <div class="edu-year">2014</div>
+          </div>
+          <div class="edu-item">
+            <div>
+              <div class="edu-name">BSc. Biochemistry</div>
+              <div class="edu-org">University of Port Harcourt</div>
+            </div>
+            <div class="edu-year">2009–2013</div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="entry">
-        <div class="ver">v2017.10</div>
-        <div>
-          <div class="entry-role">Software Engineer</div>
-          <div class="entry-org">Andela Inc · Oct 2017 – Dec 2022</div>
-          <div class="entry-desc">Built web applications for external partner engagements (Brandcast, Coursera, Trace Genomics) and internal teams. Led on select projects, mentored junior engineers, and facilitated Bootcamp cohorts.</div>
-          <div class="tag-row"><span class="tag">Team lead</span><span class="tag">Mentorship</span><span class="tag">Bootcamp facilitator</span></div>
+    <footer id="contact">
+      <div class="wrap">
+        <div class="foot-tag">
+          <span style="color: var(--blue)">&lt;</span>Contact<span
+            style="color: var(--blue)"
+          >
+            /&gt;</span
+          >
+        </div>
+        <p class="lede">
+          Open to full-time and contract roles building accessible web
+          applications. Reach out below.
+        </p>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:iphegheovie@gmail.com">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">iphegheovie@gmail.com</div>
+          </a>
+          <a
+            class="contact-card"
+            href="https://linkedin.com/in/ovie-ipheghe-35a0b0169"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">
+              linkedin.com/in/ovie-ipheghe-35a0b0169
+            </div>
+          </a>
+          <a
+            class="contact-card"
+            href="https://github.com/ipheghe"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">github.com/ipheghe</div>
+          </a>
+        </div>
+        <div class="fine">
+          © 2026 Ovie Ipheghe · built with semantic HTML &amp; AA-contrast
+          checked colour pairs
         </div>
       </div>
+    </footer>
 
-      <div class="entry">
-        <div class="ver">v2015.11</div>
-        <div>
-          <div class="entry-role">Software Developer</div>
-          <div class="entry-org">Javaplus Innovations, Nigeria · Nov 2015 – Sept 2017</div>
-          <div class="entry-desc">Relational database design, J2EE enterprise applications, Android development, and technical training for corporate clients and system integrators.</div>
-          <div class="tag-row"><span class="tag">J2EE</span><span class="tag">Android</span><span class="tag">Training</span></div>
-        </div>
-      </div>
-    </div>
+    <script>
+      const entries = document.querySelectorAll(".entry");
+      const io = new IntersectionObserver(
+        (items) => {
+          items.forEach((item) => {
+            if (item.isIntersecting) {
+              item.target.classList.add("show");
+              io.unobserve(item.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      entries.forEach((el) => io.observe(el));
 
-    <div class="earlier-note">↳ earlier: Executive Assistant, National Assembly Nigeria (N.Y.S.C) — 2015 · Quality Control, Johnson Wax Nigeria — 2012</div>
-  </div>
-</section>
-
-<section class="section" id="releases">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag"><span class="bracket">&lt;</span>Highlights<span class="bracket"> /&gt;</span></div>
-      <span class="sec-audit">● key achievements</span>
-    </div>
-    <p class="sec-desc">Products taken from spec to production.</p>
-    <div class="release-grid">
-      <div class="release-card">
-        <span class="release-year">2016</span>
-        <div class="release-title">Stock Manager mobile app</div>
-        <div class="release-body">Portfolio tracking, daily top-10 gainers/losers, and stockbroker locator.</div>
-      </div>
-      <div class="release-card">
-        <span class="release-year">2016</span>
-        <div class="release-title">Android security lockdown solution</div>
-        <div class="release-body">Restricts device access to approved functions, with an admin dashboard for user management.</div>
-      </div>
-      <div class="release-card">
-        <span class="release-year">2017</span>
-        <div class="release-title">Fintech agency banking backend</div>
-        <div class="release-body">Backend systems powering an agency banking function.</div>
-      </div>
-      <div class="release-card">
-        <span class="release-year">2019</span>
-        <div class="release-title">Coursera Careers &amp; Network Expert</div>
-        <div class="release-body">Two products shipped for Coursera within their estimated timeframes.</div>
-        <div><a href="https://experts.coursera.org/" target="_blank" rel="noopener" class="app-link">↗ experts.coursera.org</a></div>
-      </div>
-      <div class="release-card">
-        <span class="release-year">2019</span>
-        <div class="release-title">Brandcast content site generator</div>
-        <div class="release-body">Designed and delivered within the estimated timeframe.</div>
-        <div><a href="https://brandcast.com/" target="_blank" rel="noopener" class="app-link">↗ brandcast.com</a></div>
-      </div>
-      <div class="release-card">
-        <span class="release-year">2021–22</span>
-        <div class="release-title">Meridian Grooming (Pangaea)</div>
-        <div class="release-body">Web application work for Pangaea's Meridian grooming brand.</div>
-        <div><a href="https://www.meridiangrooming.com/" target="_blank" rel="noopener" class="app-link">↗ meridiangrooming.com</a></div>
-      </div>
-      <div class="release-card">
-        <span class="release-year">2020</span>
-        <div class="release-title">Trace Genomics platform migration</div>
-        <div class="release-body">Transitioned a legacy application to a new, improved version.</div>
-      </div>
-      <div class="release-card">
-        <span class="release-year">2022–now</span>
-        <div class="release-title">Tesco accessible component library</div>
-        <div class="release-body">AA+ accessible components in production across Tesco's internal and customer-facing apps.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="stack">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag"><span class="bracket">&lt;</span>Stack<span class="bracket"> /&gt;</span></div>
-      <span class="sec-audit">● props</span>
-    </div>
-    <p class="sec-desc">Languages, frameworks, and tools used across the above.</p>
-    <table class="props">
-      <tr>
-        <td class="key">languages</td>
-        <td><div class="val-chips">
-          <span class="val-chip">Java SE</span><span class="val-chip">TypeScript</span><span class="val-chip">JavaScript</span><span class="val-chip">C#</span><span class="val-chip">Dart</span><span class="val-chip">Python</span>
-        </div></td>
-      </tr>
-      <tr>
-        <td class="key">frontend</td>
-        <td><div class="val-chips">
-          <span class="val-chip">React</span><span class="val-chip">Redux</span><span class="val-chip">Angular</span><span class="val-chip">Vue</span><span class="val-chip">Bootstrap</span><span class="val-chip">jQuery</span><span class="val-chip">CSS</span>
-        </div></td>
-      </tr>
-      <tr>
-        <td class="key">backend</td>
-        <td><div class="val-chips">
-          <span class="val-chip">Node.js</span><span class="val-chip">JDBC</span><span class="val-chip">JSP / Servlet</span><span class="val-chip">EJB</span><span class="val-chip">RMI</span><span class="val-chip">Web Services</span>
-        </div></td>
-      </tr>
-      <tr>
-        <td class="key">mobile</td>
-        <td><div class="val-chips">
-          <span class="val-chip">Android</span><span class="val-chip">React Native</span><span class="val-chip">Flutter</span>
-        </div></td>
-      </tr>
-      <tr>
-        <td class="key">databases</td>
-        <td><div class="val-chips">
-          <span class="val-chip">PostgreSQL</span><span class="val-chip">MySQL</span><span class="val-chip">MS SQL</span><span class="val-chip">Oracle</span><span class="val-chip">MongoDB</span><span class="val-chip">SQLite</span>
-        </div></td>
-      </tr>
-      <tr>
-        <td class="key">practice</td>
-        <td><div class="val-chips">
-          <span class="val-chip">Accessibility (AA/AAA)</span><span class="val-chip">Micro-frontends</span><span class="val-chip">Platform Tooling</span><span class="val-chip">QA &amp; Testing</span><span class="val-chip">Project management</span><span class="val-chip">Mentorship</span>
-        </div></td>
-      </tr>
-    </table>
-  </div>
-</section>
-
-<section class="section" id="education">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag"><span class="bracket">&lt;</span>Education<span class="bracket"> /&gt;</span></div>
-      <span class="sec-audit">● verified</span>
-    </div>
-    <div class="edu-list">
-      <div class="edu-item"><div><div class="edu-name">BCS Higher Education Qualifications Certificate</div><div class="edu-org">British Computer Society — The Chartered Institute for IT</div></div><div class="edu-year">2020</div></div>
-      <div class="edu-item"><div><div class="edu-name">Certificate of Completion, Python Programming</div><div class="edu-org">Melodia Coding Academy</div></div><div class="edu-year">2018</div></div>
-      <div class="edu-item"><div><div class="edu-name">Honours Diploma, Network Engineering</div><div class="edu-org">NIIT Education and Training Center, Lagos</div></div><div class="edu-year">2017</div></div>
-      <div class="edu-item"><div><div class="edu-name">Advanced Certificate in IT (Java Technologies)</div><div class="edu-org">NIIT Education and Training Center, Lagos</div></div><div class="edu-year">2016</div></div>
-      <div class="edu-item"><div><div class="edu-name">CCNA — Cisco Certified Network Associate</div><div class="edu-org">Micrometrics, FCT Abuja</div></div><div class="edu-year">2015</div></div>
-      <div class="edu-item"><div><div class="edu-name">Certificate in IT, Web Component Development</div><div class="edu-org">Javaplus Technologies, Lagos</div></div><div class="edu-year">2014</div></div>
-      <div class="edu-item"><div><div class="edu-name">BSc. Biochemistry</div><div class="edu-org">University of Port Harcourt</div></div><div class="edu-year">2009–2013</div></div>
-    </div>
-  </div>
-</section>
-
-<footer id="contact">
-  <div class="wrap">
-    <div class="foot-tag"><span style="color:var(--blue);">&lt;</span>Contact<span style="color:var(--blue);"> /&gt;</span></div>
-    <p class="lede">Open to full-time and contract roles building accessible web applications. Reach out below.</p>
-    <div class="contact-grid">
-      <a class="contact-card" href="mailto:iphegheovie@gmail.com">
-        <div class="contact-label">Email</div>
-        <div class="contact-value">iphegheovie@gmail.com</div>
-      </a>
-      <a class="contact-card" href="https://linkedin.com/in/ovie-ipheghe-35a0b0169" target="_blank" rel="noopener">
-        <div class="contact-label">LinkedIn</div>
-        <div class="contact-value">linkedin.com/in/ovie-ipheghe-35a0b0169</div>
-      </a>
-      <a class="contact-card" href="https://github.com/ipheghe" target="_blank" rel="noopener">
-        <div class="contact-label">GitHub</div>
-        <div class="contact-value">github.com/ipheghe</div>
-      </a>
-    </div>
-    <div class="fine">© 2026 Ovie · built with semantic HTML &amp; AA-contrast checked colour pairs</div>
-  </div>
-</footer>
-
-<script>
-  const entries = document.querySelectorAll('.entry');
-  const io = new IntersectionObserver((items)=>{
-    items.forEach(item=>{
-      if(item.isIntersecting){
-        item.target.classList.add('show');
-        io.unobserve(item.target);
+      // respect reduced motion
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        entries.forEach((el) => el.classList.add("show"));
       }
-    });
-  }, {threshold:0.15});
-  entries.forEach(el=>io.observe(el));
-
-  // respect reduced motion
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    entries.forEach(el=>el.classList.add('show'));
-  }
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
